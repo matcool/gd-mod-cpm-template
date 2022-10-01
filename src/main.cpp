@@ -6,6 +6,9 @@
 // lets you use mod_main
 #include <matdash/boilerplate.hpp>
 
+// matdash::create_console
+#include <matdash/console.hpp>
+
 // gd.h includes cocos2d.h
 #include <gd.h>
 
@@ -20,6 +23,9 @@ bool GJDropDownLayer_init(gd::GJDropDownLayer* self, const char* title, float he
 
 matdash::cc::thiscall<void> PlayLayer_update(gd::PlayLayer* self, float dt) {
     matdash::orig<&PlayLayer_update>(self, dt * 0.5f);
+    // this is due to the calling convention wrapper
+    // because matdash::cc::thiscall<void> is not actually void
+    // see https://github.com/matcool/mat-dash#usage for more info
     return {};
 }
 
@@ -40,6 +46,11 @@ bool MenuLayer_init(gd::MenuLayer* self) {
 }
 
 void mod_main(HMODULE) {
+    // this creates a console window whenever the mod is injected
+    // which is very useful for debugging, but make sure to remove
+    // on release builds! :D
+    matdash::create_console();
+
     matdash::add_hook<&MenuLayer_onNewgrounds>(gd::base + 0x191e90);
     matdash::add_hook<&GJDropDownLayer_init>(gd::base + 0x113530);
     matdash::add_hook<&PlayLayer_update>(gd::base + 0x2029c0);
