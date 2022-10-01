@@ -8,6 +8,15 @@ this also uses [mat-dash](https://github.com/matcool/mat-dash) to make hooking s
 
 clone and configure/build with cmake using x86 msvc (too lazy to copy paste the 32 bit clang setup sorry)
 
+### manual setup
+if u want to do it in cmd then
+```bash
+# Configure
+cmake -G "Visual Studio 17 2022" -B build -A win32
+# Build
+cmake --build build --config Release
+```
+
 ## tip
 
 with how cpm works if you want to avoid recloning the same repo multiple times you can look into [CPM_SOURCE_CACHE](https://github.com/cpm-cmake/CPM.cmake#cpm_source_cache)
