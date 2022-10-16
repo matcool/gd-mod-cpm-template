@@ -12,7 +12,7 @@ clone and configure/build with cmake using x86 msvc (too lazy to copy paste the 
 if u want to do it in cmd then
 ```bash
 # Configure
-cmake -G "Visual Studio 17 2022" -B build -A win32
+cmake -B build -A win32
 # Build
 cmake --build build --config Release
 ```
